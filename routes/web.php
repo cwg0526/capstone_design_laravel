@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::any('/', function () {
     return view('welcome');
-});
+});*/
+
+Route::any('/', [HomeController::class, 'index']);
+
+Route::GET('/a-posts', [HomeController::class, 'get_newsList'])->name('a.posts');
+Route::GET('/a-posts-other', [HomeController::class, 'get_newsList_other'])->name('a.posts.other');
+Route::GET('/a-posts-infoList', [HomeController::class, 'get_newsList_infoList'])->name('a.posts.infoList');
+Route::GET('/a-posts-map', [HomeController::class, 'get_newsList_map'])->name('a.posts.map');
+Route::GET('/a-posts-news', [HomeController::class, 'get_newsList_news'])->name('a.posts.news');
